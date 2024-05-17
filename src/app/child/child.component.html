@@ -1,11 +1,12 @@
-<div class="container col-6">
-    @for (car of Cars; track cars?.id) {
+<div class="container col-8 d-sm-flex " st>
+    @for (car of cars; track  car.id) {
 
             <div class="card col-lg shadow border m-1">
                 <div class="card-header">
-                    <h2>{{car.id}}</h2>
+                    <h2>{{car.make}}</h2>
+                    <img [src]="car.url"  alt="" style="width: 100%; ">
                 </div>
-                <div class="card-body col-sm-4">
+                <div class="card-body col-sm">
                     <div class="text text-lg-start ">
                        <label>Make: {{car.make}}</label>
                        <br>
@@ -15,11 +16,11 @@
                     </div>
                 </div>
 
-                <div class="card-footer">
-                        <div class="text text-lg-start">
-                           <label>Color: {{car.color}}</label> &nbsp;
-                           <label>Mileage: {{car.mileage}}</label> &nbsp;
-                           <label>Price: {{car.price}}</label> &nbsp;
+                <div class="card-footer col-sm">
+                        <div class="text text-lg-start col-3">
+                           <label>Color:{{car.color}}</label> 
+                           <label>Mileage:{{car.mileage}}</label> 
+                           <label>Price:{{price[car.id] }}</label> 
                         </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import { Component, Input, model } from '@angular/core';
-import { Cars } from '../cars';
+import { Cars } from '../model/cars';
 import { ChildComponent } from '../child/child.component';
 
 @Component({

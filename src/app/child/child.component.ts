@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { Cars } from '../cars';
+import { Component, Input, OnInit } from '@angular/core';
+import { Cars } from '../model/cars';
+import { CarsService } from '../service/cars.service';
+import { formatCurrency } from '@angular/common';
 
 @Component({
   selector: 'app-child',
@@ -8,29 +10,31 @@ import { Cars } from '../cars';
   templateUrl: './child.component.html',
   styleUrl: './child.component.css'
 })
-export class ChildComponent {
+export class ChildComponent implements OnInit {
 
-  @Input() cars: Cars | undefined
-
-    Cars = [{
-    id: 0,
-    model: 'X6',
-    make: 'BMW',
-    registration: 'XLH093GP',
-    color: 'Black',
-    mileage: 125465,
-    price: 2000000
-  },
-
-  {
-    id:1,
-    model: 'C Class',
-    make: 'Mercedes',
-    registration: 'CXVS30GP',
-    color: 'White',
-    mileage: 63745,
-    price: 3000000
-
+  @Input() cars? = {} as Cars [] 
+  calculatedPrice = 0
+  price :string[] = []
+  constructor(private cars_service: CarsService) {
+       this.cars = cars_service.cars
   }
-]
+  ngOnInit(): void {
+    this.getCalculatedPrice()
+  }
+
+  getCalculatedPrice(): number{
+    
+    this.cars?.forEach(element => {
+       this.calculatedPrice = this.cars_service.calculatedPrice(element.id)
+       let formatted_price = this.getPriceFormatedInZAR(this.calculatedPrice)
+       this.price.push(formatted_price)
+    });
+   
+    return this.calculatedPrice;
+   
+  }
+   
+  getPriceFormatedInZAR(value: number) {
+    return formatCurrency(value, 'en-za', 'R', 'ZAR', '1.2-2');
+  }
 }

@@ -7,5 +7,6 @@ export interface Cars {
     color: string
     mileage: number
     price: number
+    url: string
     
 }
