@@ -1,4 +1,9 @@
 .jumbotron{
     padding: 3rem 2rem;
     background-color: white;
+    /*background-image: url('/assets/cars/cars-glare-2022-special.png');*/
+
+    background-size: cover;
+   /* height: 500px;*/
+    
 }
